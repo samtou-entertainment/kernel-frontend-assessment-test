@@ -52,7 +52,7 @@
                       <path class="text-slate-400" d="M11 12.294v11l8.486-4.714a1 1 0 00.514-.874V7.295l-9 4.999z" />
                     </svg>
                   </div>
-                  <h2 class="text-2xl text-slate-800 font-bold mb-2">Create a new contact a few clicks</h2>
+                  <h2 class="text-2xl text-slate-800 font-bold mb-2">Create a new contact in a few clicks</h2>
                   <div class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                   <button class="btn bg-indigo-500 hover:bg-indigo-600 text-white" @click="this.handleCreateBtnClick">
                     <svg class="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
@@ -113,6 +113,7 @@ import DeleteButton from '../../partials/actions/DeleteButton.vue'
 import TransactionsTable from '../../partials/contacts/ContactsTable02.vue'
 import TransactionPanel from '../../partials/contacts/ContactPanel.vue'
 import PaginationClassic from '../../components/PaginationClassic.vue'
+import API_BASE_URL from "../../data";
 
 export default {
   name: 'Contacts',
@@ -168,7 +169,7 @@ export default {
     fetchData() {
       this.error = this.contacts = null
       this.loading = true
-      fetch("http://localhost:7898/api/contacts")
+      fetch(`${ API_BASE_URL }/api/contacts`)
         .then((response) => response.json())
         .then((data) => {
           this.contacts = data.data
@@ -186,7 +187,7 @@ export default {
     },
     bulkDelete() {
       for (let contact of this.selectedItems?.values()) {
-        fetch(`http://localhost:7898/api/contacts/${contact}`, {
+        fetch(`${ API_BASE_URL }/api/contacts/${contact}`, {
           method: "DELETE",
           headers: {
             'Content-Type': 'application/json'

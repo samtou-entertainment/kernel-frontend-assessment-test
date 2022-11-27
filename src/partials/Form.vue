@@ -16,15 +16,6 @@
         <input v-model="email" id="email" class="form-input w-full" type="email" />
       </div>
 
-      <!--                <div>
-                        <label class="block text-sm font-medium mb-1" for="role">Your Role <span class="text-rose-500">*</span></label>
-                        <select id="role" class="form-select w-full">
-                          <option>Designer</option>
-                          <option>Developer</option>
-                          <option>Accountant</option>
-                        </select>
-                      </div>-->
-
       <div>
         <label class="block text-sm font-medium mb-1" for="password">Phone Number <span class="text-rose-500">*</span></label>
         <input v-model="phone" id="phone" class="form-input w-full" type="text" />
@@ -64,9 +55,6 @@
           type="button"
           @click.prevent.stop="submitHandler"
         >
-<!--          <svg v-if="isPending" class="animate-spin w-4 h-4 fill-current shrink-0" viewBox="0 0 16 16">
-            <path d="M8 16a7.928 7.928 0 01-3.428-.77l.857-1.807A6.006 6.006 0 0014 8c0-3.309-2.691-6-6-6a6.006 6.006 0 00-5.422 8.572l-1.806.859A7.929 7.929 0 010 8c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
-          </svg>-->
           <svg v-if="!isPending" class="icon icon-tabler icon-tabler-trash-x" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M4 7h16" />
@@ -83,6 +71,7 @@
 
 <script>
 import { ref } from 'vue'
+import API_BASE_URL from "../data";
 
 export default {
   name: 'Form',
@@ -129,7 +118,7 @@ export default {
         : event.type === 'submit' ? 'PUT' : 'DELETE'
 
       this.isPending = true
-      fetch(`http://localhost:7898/api/contacts${this.contact ? '/' + this.contact._id : ''}`, {
+      fetch(`${ API_BASE_URL }/api/contacts${this.contact ? '/' + this.contact._id : ''}`, {
         method: method,
         headers: {
           'Content-Type': 'application/json'
