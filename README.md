@@ -1,4 +1,4 @@
-# Contact App
+# Contact Web App
 
 A Single Page Application for contacts management. See [a demo here](https://kernel-frontend-assessment-test.vercel.app/)
 
